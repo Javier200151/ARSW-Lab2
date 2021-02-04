@@ -12,11 +12,14 @@ public class MainCanodromo {
     private static Canodromo can;
 
     private static RegistroLlegada reg = new RegistroLlegada();
+    
+    private static Controlador controlador;
 
     public static void main(String[] args) {
         can = new Canodromo(17, 100);
         galgos = new Galgo[can.getNumCarriles()];
         can.setVisible(true);
+        controlador = new Controlador(reg);
 
         //Acción del botón start
         can.setStartAction(
@@ -33,7 +36,7 @@ public class MainCanodromo {
                             public void run() {
                                 for (int i = 0; i < can.getNumCarriles(); i++) {
                                     //crea los hilos 'galgos'
-                                    galgos[i] = new Galgo(can.getCarril(i), "" + i, reg);
+                                    galgos[i] = new Galgo(can.getCarril(i), "" + i, controlador);
                                     //inicia los hilos
                                     galgos[i].start();
 
