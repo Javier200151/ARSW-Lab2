@@ -46,8 +46,7 @@ public class PrimeFinderThread extends Thread{
             } catch (InterruptedException ex) {
                 Logger.getLogger(PrimeFinderThread.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("Hilo Terminó");
-		
+            System.out.println("Hilo Terminó");		
 	}
         
         synchronized void detenerhilo(){
