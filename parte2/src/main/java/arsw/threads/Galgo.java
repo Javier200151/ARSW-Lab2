@@ -10,13 +10,22 @@ public class Galgo extends Thread {
 	private int paso;
 	private Carril carril;
 	RegistroLlegada regl;
-
+        private boolean detener;
+        
 	public Galgo(Carril carril, String name, RegistroLlegada reg) {
 		super(name);
 		this.carril = carril;
 		paso = 0;
 		this.regl=reg;
+                detener=false;
 	}
+        
+         public static Galgo iniciador(Carril carril, String name, RegistroLlegada reg)
+        {
+            Galgo g = Galgo.iniciador(carril, name, reg);
+            g.start();
+            return g;
+        }
 
 	public void corra() throws InterruptedException {
 		while (paso < carril.size()) {			
@@ -34,15 +43,28 @@ public class Galgo extends Thread {
 				}
 				
 			}
+                        synchronized (this) {
+                            while (detener) {                      
+                                wait();
+                            }
+                        }
 		}
-	}
+    }
 
-
+        synchronized void detenerhilo(){
+            detener=true;
+        }
+        synchronized void renaudarhilo(){
+            detener=false;
+            notify();
+        }
+        
 	@Override
 	public void run() {
 		
 		try {
 			corra();
+                        
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
