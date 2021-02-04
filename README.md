@@ -69,6 +69,9 @@ Parte III
 ![](./img/readme/PrimerErrorArreglado.png)
 
 
+![](./img/readme/SegundaEjecucion.png)
+
+
 
 2.  Una vez corregido el problema inicial, corra la aplicación varias
     veces, e identifique las inconsistencias en los resultados de las
