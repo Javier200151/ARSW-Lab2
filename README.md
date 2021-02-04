@@ -85,4 +85,4 @@ Parte III
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
     
-![](./img/readme/pausargalgos.png)
+![](./img/readme/pausargalgos.PNG)
