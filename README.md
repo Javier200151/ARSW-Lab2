@@ -50,13 +50,7 @@ Al iniciar la aplicación, hay un primer error evidente: los resultados (total r
 
 ![](./img/readme/PrimeraEjecucion.png)
 
-- Como se puede ver en las siguientes imagenes, el error fue corregido,se puede evidenciar que una vez los galgos(threads) finalicen la carrera se imprime el ganador.
 
-
-![](./img/readme/PrimerErrorArreglado.png)
-
-
-![](./img/readme/SegundaEjecucion.png)
 
 
 Parte III
@@ -69,6 +63,13 @@ Parte III
 
     b.  Puede utilizarse el método join() de la clase Thread para sincronizar el hilo que inicia la carrera, con la finalización de los hilos de los galgos.
 
+- Como se puede ver en las siguientes imagenes, el error fue corregido,se puede evidenciar que una vez los galgos(threads) finalicen la carrera se imprime el ganador.
+
+
+![](./img/readme/PrimerErrorArreglado.png)
+
+
+
 2.  Una vez corregido el problema inicial, corra la aplicación varias
     veces, e identifique las inconsistencias en los resultados de las
     mismas viendo el ‘ranking’ mostrado en consola (algunas veces
@@ -76,9 +77,26 @@ Parte III
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
 
+- En la sigiente imagen se puede observar que al ejecutar el programa existen inconsistencias en cuanto a que varios Galgos aparecen como si hubieran llegado de primer lugar, lo cual no deberia pasar. Revisando el codigo identificamos que los puntos criticos del programa que causan estas inconsistencias estan cuando cada thread accede por medio de un metodo de la clase RegistroLlegada a el atributo ubicacion, por lo cual cuando dos threads acceden a este atributo al mismo tiempo se genera una condicion de carrera y salen resultados como si hubieran llegado ambos en posicion 1.
+
+    
+    ![](./img/readme/SegundaEjecucion.png)
+    
+
 3.  Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
+    
+    
+- Como veremos en la siguiente imagen se creo una clase Controlador en donde se implementa la sincronizacion a la hora de acceder por medio del metodo getUltimaPosicionAlcanzada al atributo ubicacion, esto lo que hace es que cuando un thread intenta acceder a este atributo, este primero verificara por asi decirlo si hay otro thread que ya este accediento al mismo atributo, esto lo hace debido a que por debajo los threads manejan como una compuerta de acceso que les dice cuando ya otro thread termino de usar el metodo indicado para asi poder acceder el.
+
+
+    ![](./img/readme/SincronizacionThreads.png)
+    
+    
+    ![](./img/readme/EjecucionFinal.png)
+
+
 
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
